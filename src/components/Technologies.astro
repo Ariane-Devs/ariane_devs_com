@@ -1,62 +1,36 @@
 <div class="technologies">
   <h2>Tecnologías que Dominamos</h2>
   <div class="logos">
-    <div class="logo">
+    <div class="logo_items">
       <img src="/logos/angular-logo.png" alt="Angular Logo" />
-    </div>
-    <div class="logo">
       <img src="/logos/flutter-logo.png" alt="Flutter Logo" />
-    </div>
-
-    <div class="logo">
       <img src="/logos/python-logo.svg" alt="Python Logo" />
-    </div>
-
-    <div class="logo">
       <img src="/logos/django-logo.svg" alt="Django Logo" />
-    </div>
-
-    <div class="logo">
       <img src="/logos/flask-logo.svg" alt="Flask Logo" />
-    </div>
-
-    <div class="logo">
       <img src="/logos/logo-fas-api.png" alt="Fas Api Logo" />
-    </div>
-
-    <div class="logo">
       <img src="/logos/astro-logo-dark.png" alt="Astro Logo" />
-    </div>
-
-    <div class="logo">
       <img src="/logos/aws-logo.svg" alt="Aws Logo" />
-    </div>
-
-    <div class="logo">
       <img src="/logos/gcp-logo.png" alt="GCP Logo" />
-    </div>
-
-    <div class="logo">
       <img src="/logos/azure-logo.png" alt="Azure Logo" />
-    </div>
-
-    <div class="logo">
       <img src="/logos/docker-logo-blue.png" alt="Docker Logo" />
-    </div>
-
-    <div class="logo">
       <img src="/logos/net-core-logo.png" alt=".Net Logo" />
-    </div>
-
-    <div class="logo">
       <img src="/logos/firebase-logo.png" alt="Firebase Logo" />
-    </div>
-
-    <div class="logo">
       <img src="/logos/logo-redis.png" alt="Redis Logo" />
-    </div>
-
-    <div class="logo">
+      <img src="/logos/rabbitmq-logo.svg" alt="Rabbitmq Logo" />
+      <img src="/logos/angular-logo.png" alt="Angular Logo" />
+      <img src="/logos/flutter-logo.png" alt="Flutter Logo" />
+      <img src="/logos/python-logo.svg" alt="Python Logo" />
+      <img src="/logos/django-logo.svg" alt="Django Logo" />
+      <img src="/logos/flask-logo.svg" alt="Flask Logo" />
+      <img src="/logos/logo-fas-api.png" alt="Fas Api Logo" />
+      <img src="/logos/astro-logo-dark.png" alt="Astro Logo" />
+      <img src="/logos/aws-logo.svg" alt="Aws Logo" />
+      <img src="/logos/gcp-logo.png" alt="GCP Logo" />
+      <img src="/logos/azure-logo.png" alt="Azure Logo" />
+      <img src="/logos/docker-logo-blue.png" alt="Docker Logo" />
+      <img src="/logos/net-core-logo.png" alt=".Net Logo" />
+      <img src="/logos/firebase-logo.png" alt="Firebase Logo" />
+      <img src="/logos/logo-redis.png" alt="Redis Logo" />
       <img src="/logos/rabbitmq-logo.svg" alt="Rabbitmq Logo" />
     </div>
   </div>
@@ -65,7 +39,7 @@
 <style>
   .technologies {
     margin-top: 122px;
-    padding: 5.25rem 7.563rem;
+    padding: 5.25rem 0;
     text-align: center;
     background-color: #fafafa;
   }
@@ -76,16 +50,53 @@
     margin-bottom: 100px;
   }
 
-  .logos {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    column-gap: 146px;
-    row-gap: 94px;
+  @keyframes slides {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
   }
 
-  .logo {
-    height: 48px;
-    display: flex;
-    justify-content: center;
+  .logos {
+    overflow: hidden;
+    padding: 30px 0px;
+    white-space: nowrap;
+    position: relative;
+  }
+
+  .logos:before,
+  .logos:after {
+    position: absolute;
+    top: 0;
+    content: "";
+    width: 250px;
+    height: 100%;
+    z-index: 2;
+  }
+
+  .logos:before {
+    left: 0;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0), #fafafa);
+  }
+
+  .logos:after {
+    right: 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), #fafafa);
+  }
+
+  .logo_items {
+    display: inline-block;
+    animation: 55s slides infinite linear;
+  }
+
+  .logos:hover .logo_items {
+    animation-play-state: paused;
+  }
+
+  .logo_items img {
+    height: 60px;
+    margin: 0 40px;
   }
 </style>

@@ -1,0 +1,73 @@
+---
+import Logo from "./Logo.astro";
+---
+
+<footer>
+  <div class="footer-content">
+    <div class="contact">
+      <div class="brand">
+        <Logo />
+        <a href="/">ArianeDevs</a>
+      </div>
+      <div class="footer-content__social">
+        <a href="#"><img src="/icons/facebook.svg" alt="Facebook" /></a>
+
+        <a href="#"><img src="/icons/x.svg" alt="X" /></a>
+
+        <a href="#"><img src="/icons/instagram.svg" alt="Instagram" /></a>
+      </div>
+    </div>
+    <div class="navigation">
+      <div class="footer-content__links">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="credits">
+  <p>© 2024 ArianeDevs, Built by JSRamirez</p>
+</div>
+
+<style>
+  .footer-content {
+    padding: 7.5rem 6.25rem;
+    background: #fafafa;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .footer-content__social {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    margin-top: 56px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+  }
+
+  .brand a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #000;
+    font-size: 1.765rem;
+  }
+
+  .credits {
+    background: #000;
+  }
+
+  .credits p {
+    margin: 0;
+    color: #fff;
+    padding: 50px 100px;
+    font-size: 14px;
+  }
+</style>

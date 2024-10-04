@@ -9,23 +9,20 @@ import Logo from "./Logo.astro";
         <Logo />
         <a href="/">ArianeDevs</a>
       </div>
-      <div class="footer-content__social">
+      <div class="social">
         <a href="#"><img src="/icons/facebook.svg" alt="Facebook" /></a>
-
         <a href="#"><img src="/icons/x.svg" alt="X" /></a>
-
         <a href="#"><img src="/icons/instagram.svg" alt="Instagram" /></a>
       </div>
+      <button> Contactanos </button>
     </div>
     <div class="navigation">
-      <div class="footer-content__links">
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-      </div>
+      <ul class="links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
     </div>
   </div>
 </footer>
@@ -40,13 +37,13 @@ import Logo from "./Logo.astro";
     background: #fafafa;
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
 
   .footer-content__social {
     display: flex;
     gap: 1.5rem;
     align-items: center;
-    margin-top: 56px;
   }
   .brand {
     display: flex;
@@ -69,5 +66,73 @@ import Logo from "./Logo.astro";
     color: #fff;
     padding: 50px 100px;
     font-size: 14px;
+  }
+
+  .contact {
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+  }
+
+  .social {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .links {
+    display: grid;
+    list-style: none;
+    padding: 0;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 75px;
+    row-gap: 48px;
+  }
+
+  .links li {
+    display: flex;
+    align-items: center;
+  }
+
+  a {
+    text-decoration: none;
+    color: #000;
+  }
+
+  @media (max-width: 1024px) {
+    .footer-content {
+      padding: 5rem 3rem;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .links {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .brand a {
+      font-size: 1.5rem;
+    }
+    .credits {
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .footer-content {
+      padding: 3rem 2rem;
+    }
+
+    .links {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .brand a {
+      font-size: 1.25rem;
+    }
+
+    .links li {
+      justify-content: center;
+    }
   }
 </style>

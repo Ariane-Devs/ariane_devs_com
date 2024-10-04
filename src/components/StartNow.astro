@@ -7,7 +7,6 @@
     <div class="decoration">
       <div class="circle">
         <img src="/icons/ray-icon.svg" alt="Ray Icon" />
-
         <img src="/icons/arrow-top-icon.svg" alt="Arrow Top Icon" />
       </div>
     </div>
@@ -18,9 +17,10 @@
   .start-now {
     padding: 7.5rem 6.25rem;
   }
+
   .container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     background: #232038;
     color: #ffffff;
@@ -36,6 +36,22 @@
     margin-bottom: 80px;
   }
 
+  button {
+    background-color: #ffffff;
+    color: #000000;
+  }
+
+  button:hover {
+    background-color: #e0ff22;
+    color: #000000;
+  }
+
+  .decoration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .circle {
     width: 352px;
     height: 352px;
@@ -47,8 +63,74 @@
     gap: 15px;
   }
 
-  button:hover {
-    background-color: #e0ff22;
-    color: #000000;
+  /* Media Queries para dispositivos tablets */
+  @media (max-width: 1024px) {
+    .start-now {
+      padding: 5rem 3rem;
+    }
+
+    .container {
+      padding: 40px 50px;
+      flex-direction: column-reverse;
+      text-align: center;
+      gap: 2rem;
+    }
+
+    h2 {
+      font-size: 48px;
+      margin-bottom: 40px;
+    }
+
+    .circle {
+      width: 250px;
+      height: 250px;
+    }
+
+    .circle img {
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  /* Media Queries para dispositivos móviles */
+  @media (max-width: 768px) {
+    .start-now {
+      padding: 3rem 1.5rem;
+    }
+
+    .container {
+      padding: 30px 20px;
+    }
+
+    h2 {
+      font-size: 36px;
+      margin-bottom: 30px;
+    }
+
+    .circle {
+      width: 180px;
+      height: 180px;
+    }
+  }
+
+  /* Media Queries para teléfonos pequeños */
+  @media (max-width: 480px) {
+    .start-now {
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      padding: 20px 10px;
+    }
+
+    h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .circle {
+      width: 150px;
+      height: 150px;
+    }
   }
 </style>

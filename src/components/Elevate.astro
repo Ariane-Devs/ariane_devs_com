@@ -17,6 +17,7 @@
   p {
     margin: 0;
   }
+
   .elevate {
     padding: 7.5rem 6.25rem;
     margin-top: 60px;
@@ -25,9 +26,7 @@
 
   #banner {
     height: 23.188rem;
-
     padding: 3.563rem 6.125rem;
-
     border-radius: 32px;
     display: flex;
     gap: 12.063rem;
@@ -67,5 +66,85 @@
   button:hover {
     background-color: #e0ff22;
     color: #000000;
+  }
+
+  /* Media Queries para dispositivos tablets */
+  @media (max-width: 1024px) {
+    .elevate {
+      padding: 5rem 4rem;
+    }
+
+    #banner {
+      height: auto;
+      padding: 3rem 4rem;
+      gap: 2rem;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    #title {
+      font-size: 48px;
+      margin-bottom: 1.5rem;
+    }
+
+    .action p {
+      font-size: 18px;
+      line-height: 28px;
+    }
+
+    .action {
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  /* Media Queries para dispositivos móviles */
+  @media (max-width: 768px) {
+    .elevate {
+      padding: 3rem 2rem;
+    }
+
+    #banner {
+      height: auto;
+      padding: 2rem;
+      gap: 1rem;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    #title {
+      font-size: 36px;
+      margin-bottom: 1rem;
+    }
+
+    .action p {
+      font-size: 16px;
+      line-height: 24px;
+    }
+  }
+
+  /* Media Queries para teléfonos pequeños */
+  @media (max-width: 480px) {
+    .elevate {
+      padding: 2rem 1rem;
+    }
+
+    #banner {
+      height: auto;
+      padding: 1.5rem;
+      gap: 1rem;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    #title {
+      font-size: 28px;
+      margin-bottom: 0.5rem;
+    }
+
+    .action p {
+      font-size: 14px;
+      line-height: 22px;
+    }
   }
 </style>

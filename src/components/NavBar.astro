@@ -8,7 +8,19 @@ import Logo from "./Logo.astro";
     <a href="/">ArianeDevs</a>
   </div>
 
-  <nav id="menu">
+  <!-- Botón de Menú Hamburguesa (visible solo en dispositivos pequeños) -->
+  <button
+    class="hamburger"
+    id="hamburger"
+    aria-label="Abrir menú de navegación"
+  >
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
+
+  <!-- Menú de Navegación Principal (visible en dispositivos grandes) -->
+  <nav id="menu" class="nav-links">
     <a href="/">Home</a>
     <a href="/how-it-works">How it Works</a>
     <a href="/our-work">Our Work</a>
@@ -16,17 +28,70 @@ import Logo from "./Logo.astro";
     <a href="/about-us">About Us</a>
   </nav>
 
-  <!-- Add a button to Contact -->
-  <button>Contact</button>
+  <!-- Botón de Contacto -->
+  <button class="contact-button">Contact</button>
 </div>
 
+<!-- Drawer (Panel Lateral) -->
+<div class="drawer" id="drawer">
+  <!-- Botón de Cerrar -->
+  <button
+    class="close-btn"
+    id="close-btn"
+    aria-label="Cerrar menú de navegación">&times;</button
+  >
+
+  <!-- Enlaces de Navegación en el Drawer -->
+  <nav class="drawer-links">
+    <a href="/">Home</a>
+    <a href="/how-it-works">How it Works</a>
+    <a href="/our-work">Our Work</a>
+    <a href="/pricing">Pricing</a>
+    <a href="/about-us">About Us</a>
+    <a href="/contact">Contact</a>
+    <!-- Añadido contacto al drawer -->
+  </nav>
+</div>
+
+<!-- Overlay (Fondo Oscuro al Abrir el Drawer) -->
+<div class="overlay" id="overlay"></div>
+
+<!-- Script para Manejar la Apertura y Cierre del Drawer -->
+<script>
+  // Obtener elementos del DOM
+  const hamburger = document.getElementById("hamburger");
+  const drawer = document.getElementById("drawer");
+  const closeBtn = document.getElementById("close-btn");
+  const overlay = document.getElementById("overlay");
+
+  // Función para abrir el Drawer
+  const openDrawer = () => {
+    drawer?.classList.add("open");
+    overlay?.classList.add("active");
+  };
+
+  // Función para cerrar el Drawer
+  const closeDrawer = () => {
+    drawer?.classList.remove("open");
+    overlay?.classList.remove("active");
+  };
+
+  // Event Listeners
+  hamburger?.addEventListener("click", openDrawer);
+  closeBtn?.addEventListener("click", closeDrawer);
+  overlay?.addEventListener("click", closeDrawer);
+</script>
+
 <style>
+  /* Estilos Globales */
   .navBar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1.125rem 7.5rem;
     border-bottom: 0.1rem solid #e5e5e5;
+    position: relative;
+    background-color: #ffffff; /* Fondo de la navbar */
   }
 
   .brand {
@@ -34,31 +99,193 @@ import Logo from "./Logo.astro";
     align-items: center;
   }
 
-  .logo {
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    margin-right: 1rem;
-  }
-
   .brand a {
     text-decoration: none;
     font-weight: bold;
     color: #000;
     font-size: 1.765rem;
+    margin-left: 0.5rem;
   }
 
-  #menu {
+  /* Botón de Contacto */
+
+  /* Menú de Navegación Principal */
+  .nav-links {
     display: flex;
     gap: 2.5rem;
   }
 
-  #menu a {
+  .nav-links a {
     text-decoration: none;
     color: #000;
+    font-size: 1rem;
+    transition: color 0.3s ease;
   }
 
-  #menu a:hover {
+  .nav-links a:hover {
     color: #3461ff;
+  }
+
+  /* Botón de Menú Hamburguesa */
+  .hamburger {
+    display: none; /* Oculto en dispositivos grandes */
+    flex-direction: column;
+    justify-content: space-around;
+    width: 2rem;
+    height: 2rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 5; /* Por encima del Drawer */
+  }
+
+  .hamburger .bar {
+    width: 2rem;
+    height: 0.25rem;
+    background-color: #000;
+    border-radius: 10px;
+    transition: all 0.3s linear;
+    position: relative;
+    transform-origin: 1px;
+  }
+
+  /* Drawer (Panel Lateral) */
+  .drawer {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Oculto por defecto */
+    width: 250px;
+    height: 100%;
+    background-color: #ffffff;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    transition: right 0.3s ease;
+    z-index: 10;
+    padding-top: 60px; /* Espacio para el botón de cerrar */
+  }
+
+  .drawer.open {
+    right: 0; /* Visible cuando se abre */
+  }
+
+  /* Botón de Cerrar en el Drawer */
+  .close-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #333333;
+  }
+
+  /* Enlaces dentro del Drawer */
+  .drawer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .drawer-links a {
+    text-decoration: none;
+    color: #333333;
+    font-size: 1.25rem;
+    transition: color 0.3s ease;
+  }
+
+  .drawer-links a:hover {
+    color: #007bff;
+  }
+
+  /* Overlay (Fondo Oscuro) */
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    z-index: 9;
+  }
+
+  .overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Media Queries */
+
+  /* Tablet Devices (768px - 1024px) */
+  @media (max-width: 1024px) and (min-width: 768px) {
+    .navBar {
+      padding: 1.125rem 3rem;
+    }
+
+    .nav-links {
+      gap: 1.5rem;
+    }
+
+    .brand a {
+      font-size: 1.5rem;
+    }
+
+    .drawer {
+      width: 200px;
+    }
+
+    .drawer-links a {
+      font-size: 1.1rem;
+    }
+
+    .hamburger {
+      display: flex; /* Mostrar el botón de hamburguesa */
+    }
+
+    .nav-links {
+      display: none; /* Ocultar el menú en dispositivos tablet */
+    }
+
+    .contact-button {
+      display: none; /* Opcional: ocultar el botón de contacto en móvil */
+    }
+  }
+
+  /* Mobile Devices (max-width: 767px) */
+  @media (max-width: 767px) {
+    .navBar {
+      padding: 0.75rem 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .brand a {
+      font-size: 1.4rem;
+    }
+
+    .nav-links {
+      display: none; /* Ocultar el menú en dispositivos móviles */
+    }
+
+    .hamburger {
+      display: flex; /* Mostrar el botón de hamburguesa */
+    }
+
+    /* Drawer */
+    .drawer {
+      width: 70%;
+    }
+
+    .drawer-links a {
+      font-size: 1.2rem;
+    }
+
+    .contact-button {
+      display: none; /* Opcional: ocultar el botón de contacto en móvil */
+    }
   }
 </style>

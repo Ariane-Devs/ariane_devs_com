@@ -1,5 +1,17 @@
 ---
-
+if (Astro.request.method === "POST") {
+  try {
+    const data = await Astro.request.formData();
+    const email = data.get("email");
+    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+    console.log(email)
+  } catch (error) {
+    if (error instanceof Error) {
+      console.log(error.message);
+  
+    }
+  }
+}
 ---
 
 <div class="header">
@@ -10,8 +22,8 @@
       digitales robustas con las últimas tecnologías. Flutter, Angular, Python y
       más, desarrollados a la perfección para tu negocio.
     </p>
-    <form action="">
-      <input type="email" placeholder="Ingresa tu email" />
+    <form id="email-contact" method="POST">
+      <input name ="email" type="email" placeholder="Ingresa tu email" />
       <button type="submit">Hablemos</button>
     </form>
   </div>

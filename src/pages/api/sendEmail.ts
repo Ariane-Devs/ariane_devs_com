@@ -1,6 +1,7 @@
 import { Resend } from "resend";
 
 export const handleEmail = (email: FormDataEntryValue | null) => {
+  console.log("Entra a la función handleEmail");
   if (typeof email !== "string") {
     console.error("Email no es válido");
     return;

@@ -1,3 +1,73 @@
+---
+import { handleContactForm } from "../pages/api/sendContactForm";
+
+if (Astro.request.method === "POST") {
+  try {
+    const data = await Astro.request.formData();
+    const name = data.get("name") as string;
+    const company = data.get("company") as string;
+    const email = data.get("email") as string;
+    const phone = data.get("phone") as string;
+    const subject = data.get("subject") as string;
+    const message = data.get("message") as string;
+
+    await handleContactForm({ name, company, email, phone, subject, message });
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+    }
+  }
+}
+---
+<form method="POST">
+  <h2>Formulario de Contacto</h2>
+  <p>
+    Por favor, complete el siguiente formulario para ponerse en contacto con
+    nosotros.
+  </p>
+
+  <div id="inputs">
+    <div class="row">
+      <div class="field">
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" name="name" required />
+      </div>
+      <div class="field">
+        <label for="company">Empresa:</label>
+        <input type="text" id="company" name="company" required />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+
+      <div class="field">
+        <label for="phone">Teléfono:</label>
+        <input type="tel" id="phone" name="phone" required />
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="subject">Asunto:</label>
+      <select id="subject" name="subject" required>
+        <option value="consulta">Consulta</option>
+        <option value="soporte">Soporte</option>
+        <option value="otros">Otros</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="message">Mensaje:</label>
+      <textarea id="message" name="message" required></textarea>
+    </div>
+  </div>
+
+  <button type="submit">Enviar</button>
+</form>
+
 <style>
   form {
     display: flex;
@@ -43,9 +113,18 @@
   textarea {
     padding: 0.5rem 1rem;
     border: 0.1rem solid #e5e5e5;
-    border-radius: 2.313rem;
+    border-radius: 15px;
     width: 100%;
     box-sizing: border-box; /* Asegura que el padding y el borde se incluyan en el ancho total */
+  }
+
+  textarea {
+    padding: 0.5rem 1rem;
+    border: 0.1rem solid #e5e5e5;
+    border-radius: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 150px; /* Agrega una altura mínima */
   }
 
   input::placeholder {
@@ -129,52 +208,3 @@
     }
   }
 </style>
-
-<form>
-  <h2>Formulario de Contacto</h2>
-  <p>
-    Por favor, complete el siguiente formulario para ponerse en contacto con
-    nosotros.
-  </p>
-
-  <div id="inputs">
-    <div class="row">
-      <div class="field">
-        <label for="name">Nombre:</label>
-        <input type="text" id="name" name="name" required />
-      </div>
-      <div class="field">
-        <label for="company">Empresa:</label>
-        <input type="text" id="company" name="company" required />
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="field">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required />
-      </div>
-
-      <div class="field">
-        <label for="phone">Teléfono:</label>
-        <input type="tel" id="phone" name="phone" required />
-      </div>
-    </div>
-
-    <div class="field">
-      <label for="subject">Asunto:</label>
-      <select id="subject" name="subject" required>
-        <option value="consulta">Consulta</option>
-        <option value="soporte">Soporte</option>
-        <option value="otros">Otros</option>
-      </select>
-    </div>
-
-    <div class="field">
-      <label for="message">Mensaje:</label>
-      <textarea id="message" name="message" required></textarea>
-    </div>
-  </div>
-
-  <button type="submit">Enviar</button>
-</form>

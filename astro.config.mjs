@@ -1,12 +1,14 @@
 // @ts-check
 import { defineConfig } from "astro/config";
-import vercel from '@astrojs/vercel/serverless'
-import dotenv from 'dotenv';
+
+import netlify from "@astrojs/netlify/functions";
+import dotenv from "dotenv";
 
 dotenv.config();
 
 // https://astro.build/config
 export default defineConfig({
-    output: 'server',
-    adapter: vercel(),
+  output: "server",
+  site: "https://RamirezSebastianJ.github.io",
+  base: "ariane-devs",
 });

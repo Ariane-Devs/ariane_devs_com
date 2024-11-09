@@ -24,6 +24,7 @@ jobs:
         uses: withastro/action@v3
         with:
           package-manager: pnpm@latest # Especificar la versión de pnpm
+          install-args: --no-frozen-lockfile # Agregar esta línea
 
   deploy:
     needs: build

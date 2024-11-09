@@ -21,10 +21,17 @@ export const handleEmail = (email: FormDataEntryValue | null) => {
 
   const resend = new Resend(apiKey);
 
-  resend.emails.send({
-    from: "onboarding@resend.dev",
-    to: email,
-    subject: "Solicitud de Información - ArianeDevs",
-    html: "<p>Congrats on sending your <strong>first email from ArianeDevs</strong>!</p>",
-  });
+  resend.emails
+    .send({
+      from: "onboarding@resend.dev",
+      to: email,
+      subject: "Solicitud de Información - ArianeDevs",
+      html: "<p>Congrats on sending your <strong>first email from ArianeDevs</strong>!</p>",
+    })
+    .then(() => {
+      console.log("Email enviado correctamente");
+    })
+    .catch((error) => {
+      console.error("Error al enviar el email", error);
+    });
 };

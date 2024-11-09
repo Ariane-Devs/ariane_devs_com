@@ -10,6 +10,6 @@ dotenv.config();
 export default defineConfig({
   output: "server",
   adapter: netlify({
-    edgeMiddleware: false,
+    edgeMiddleware: true,
   }),
 });

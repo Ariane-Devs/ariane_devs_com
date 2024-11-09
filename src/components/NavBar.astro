@@ -21,16 +21,15 @@ import Logo from "./Logo.astro";
 
   <!-- Menú de Navegación Principal (visible en dispositivos grandes) -->
   <nav id="menu" class="nav-links">
-    <a href="/">Home</a>
-    <a href="/how-it-works">How it Works</a>
-    <a href="/our-work">Our Work</a>
-    <a href="/pricing">Pricing</a>
+    <a href="/">Inicio</a>
+    <a href="#ariane-start">ArianeStart</a>
     <a href="/policies">Políticas</a>
-    <a href="/about-us">About Us</a>
   </nav>
 
   <!-- Botón de Contacto -->
-  <button class="contact-button">Contact</button>
+  <button class="contact-button" onclick="location.href='/contact'"
+    >Contact</button
+  >
 </div>
 
 <!-- Drawer (Panel Lateral) -->
@@ -44,13 +43,10 @@ import Logo from "./Logo.astro";
 
   <!-- Enlaces de Navegación en el Drawer -->
   <nav class="drawer-links">
-    <a href="/">Home</a>
-    <a href="/how-it-works">How it Works</a>
-    <a href="/our-work">Our Work</a>
-    <a href="/pricing">Pricing</a>
-    <a href="/about-us">About Us</a>
-    <a href="/contact">Contact</a>
-    <!-- Añadido contacto al drawer -->
+    <a href="/">Inicio</a>
+    <a href="#ariane-start">ArianeStart</a>
+    <a href="/policies">Políticas</a>
+    <a href="/contact">Contactanos</a>
   </nav>
 </div>
 
@@ -81,6 +77,28 @@ import Logo from "./Logo.astro";
   hamburger?.addEventListener("click", openDrawer);
   closeBtn?.addEventListener("click", closeDrawer);
   overlay?.addEventListener("click", closeDrawer);
+
+  // Asegurarse de que el enlace funcione correctamente
+  document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e: Event) {
+      e.preventDefault();
+      const targetId = (this as HTMLAnchorElement).getAttribute("href")?.substring(1);
+      const targetElement = targetId ? document.getElementById(targetId) : null;
+      if (window.location.pathname !== "/") {
+        window.location.href = `/#${targetId}`;
+      } else if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: "smooth",
+        });
+      }
+      closeDrawer();
+    });
+  });
+
+  // Cerrar el drawer al hacer clic en un enlace dentro del drawer
+  document.querySelectorAll<HTMLAnchorElement>('.drawer-links a').forEach((link) => {
+    link.addEventListener("click", closeDrawer);
+  });
 </script>
 
 <style>

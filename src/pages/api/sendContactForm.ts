@@ -10,7 +10,7 @@ interface ContactFormData {
 }
 
 export const handleContactForm = (data: ContactFormData) => {
-  console.log("Entra a la función handleEmail");
+  console.log("Entra a la función handleContactForm");
   const { name, company, email, phone, subject, message } = data;
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -37,7 +37,7 @@ export const handleContactForm = (data: ContactFormData) => {
 
   resend.emails.send({
     from: "onboarding@resend.dev",
-    to: email,
+    to: process.env.RECEPT_EMAIL ?? "",
     subject: `Solicitud de Información - ${subject}`,
     html: `<p>Nombre: ${name}</p><p>Empresa: ${company}</p><p>Teléfono: ${phone}</p><p>Mensaje: ${message}</p>`,
   });

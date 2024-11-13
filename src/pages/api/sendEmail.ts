@@ -24,12 +24,20 @@ export const handleEmail = (email: FormDataEntryValue | null) => {
   resend.emails
     .send({
       from: "onboarding@resend.dev",
-      to: email,
+      to: process.env.RECEPT_EMAIL ?? "",
       subject: "Solicitud de Información - ArianeDevs",
-      html: "<p>Congrats on sending your <strong>first email from ArianeDevs</strong>!</p>",
+      html:
+        "<p>¡Hola! Alguien ha solicitado información en tu sitio web, el email es: " +
+        email +
+        "</p>",
     })
     .then(() => {
-      console.log("Email enviado correctamente");
+      resend.emails.send({
+        from: process.env.RECEPT_EMAIL ?? "",
+        to: email,
+        subject: "Solicitud de contacto - ArianeDevs",
+        html: "<p>¡Hola! Hemos recibido tu mensaje y te responderemos lo más pronto posible.</p>",
+      });
     })
     .catch((error) => {
       console.error("Error al enviar el email", error);
